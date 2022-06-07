@@ -16,10 +16,10 @@ Nous jugerons donc les 3 premières compétences de développeur web qui sont :
 # Exercice 2 – Côté back
 Dupliquer le site de l’exercice numéro 1.
 Et réaliser la base de données qui va permettre à un utilisateur de se connecter et d’ajouter des projets.
--Nous devons savoir qui à ajouter un projet, et quand a-t-il été ajouté en base de données.
+- Nous devons savoir qui à ajouter un projet, et quand a-t-il été ajouté en base de données.
 Une fois réalisé, vous devrez réaliser l’interface admin qui permet d’ajouter des projets en base de
 données. (ajout de projet, traitement des images, traitement des liens…)
--Pour finir, modifier la page d’accueil pour afficher les éléments à partir de la base de données
+- Pour finir, modifier la page d’accueil pour afficher les éléments à partir de la base de données
 Je vous invite à utiliser la meilleure technologie que vous connaissez pour réaliser cette partie.
 ( Natif < POO < POO MVC < Framework ).
 
