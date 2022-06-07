@@ -1,6 +1,5 @@
-# projet_romain_s1
-
 #  Exercice 1 – Maquettage + Front
+
 Réaliser un site internet one page qui va rediriger vers l’intégralité des projets demandés comme pourrait faire un
 portfolio car chaque exercice de ce projet devra être en ligne.
 Vous devez passer par une partie maquettage sur figma ou adobe.
