@@ -176,6 +176,14 @@
     display: flex;
     justify-content: center;
 }
+
+.topt{
+    position: absolute;
+    place-content: center;
+    height: 75%;
+    display: grid;
+    width: 100%;
+}
 .separator2 {
     position:right;
     width: 72%;
