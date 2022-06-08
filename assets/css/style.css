@@ -155,3 +155,31 @@
 
 
 
+/* maquette */
+
+#pdf {
+    width:100%;
+     height: 800px; 
+}
+.titre {
+    font-family: "YAE28xKCyWo 0", _fb_, auto;
+    font-size: 52.058px;
+    color: rgb(255, 255, 255);
+    line-height: 102px;
+    letter-spacing: 0em;
+    --para-spacing: 0;
+    text-transform: uppercase;
+    --head-indent: 0;
+    --numeric-list-marker: none;
+    list-style-type: none;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.separator2 {
+    position:right;
+    width: 72%;
+    height: 3px;
+    border-radius: 20px;
+    background-color: aliceblue;
+}
