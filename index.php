@@ -18,6 +18,7 @@
 <body>
     <?php 
     include 'assets/include/navbar.php';
+    include 'assets/include/maquette.php';
 
  
     
