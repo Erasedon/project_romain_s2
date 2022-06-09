@@ -191,4 +191,74 @@
     border-radius: 20px;
     background-color: aliceblue;
 }
-/* maquette */
+
+/* maquette fin*/
+/*card */
+
+.border img{
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+      height: 300px;
+
+}
+
+.border ul{
+    display: flex;
+    flex-direction: column;
+    line-height: 28px;
+    font-size: 20px;
+    font-weight: 200;
+    list-style: none;
+    margin-bottom: 40px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.categorie-tb {
+    width: 60%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(221px, 1fr));
+    margin-top: 50px;
+  }
+
+  
+.categorie-1 img{
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+      height: 300px;
+}
+
+    
+
+.categorie-1 {
+    width: 100%;
+    margin-right: 10px;
+    height: 400px;
+  }
+
+.categorie-1 ul{
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    justify-content: end;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    text-align: center;
+}
+
+
+.border h6{
+    font-weight: normal;
+}
+
+.sous-container{
+    display: flex;
+    flex-direction: row;
+}
+/* card fin */
