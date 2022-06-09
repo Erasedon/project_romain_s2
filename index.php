@@ -20,6 +20,7 @@
     include 'assets/include/navbar.php';
       include 'assets/include/presentation.php';
       include 'assets/include/maquette.php';
+      include 'assets/include/cards.php';
   
     
     ?>
