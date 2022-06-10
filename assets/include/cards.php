@@ -1,4 +1,4 @@
-<div class="container">
+<div class="containers">
     <div class="titre">
         <h2>Les projets </h2>
     </div>  

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="containers">
     <div class="separator"></div>
     <div class="titre">    
         <h2 >Maquette</h2>

@@ -5,7 +5,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\PHPMailer;
 
 
-  include ('connexion.php');
+  include ('../db/connexion.php');
 
 
 
