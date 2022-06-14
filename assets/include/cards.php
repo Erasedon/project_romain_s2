@@ -1,16 +1,30 @@
+<?php
+include 'assets/db/connexion.php'; 
+
+	$sql = "SELECT * FROM project"; 
+	// $sql = "SELECT id_users FROM project"; 
+	$prepare = $db->prepare($sql);   
+		 $prepare ->execute();
+		 $result = $prepare->fetchall(); 
+         ?>
+
 <div class="containers">
     <div class="titre">
         <h2>Les projets </h2>
     </div>  
-    <div class="sous-container">  
+    <div class="sous-container"> 
+    <?php 
+	 foreach ($result as $row){
+ 
+?> 
         <div class="categorie-tb">
             <div class="test-tb">
                 <div class="border">
-                    <a style="text-decoration: none" href="index.php">
+                    <a style="text-decoration: none" href="<?php echo $row['url_project'] ?>">
                         <ul>
-                            <li><img src="assets/img/image1.jpg"></li>
+                            <li><img src="<?php echo $row['img_project'] ?>"></li>
                             <li>
-                                <h6>exercice1</h6>
+                                <h6><?php echo $row['titre_project'] ?></h6>
                             </li>
 
                         </ul>
@@ -18,37 +32,8 @@
                 </div>
             </div>
         </div>
-            <div class="categorie-tb">
-                <div class="test-tb">
-                    <div class="border">
-                        <a style="text-decoration: none" href="../projet_romain_s2/index.php">
-                            <ul>
-                                <li><img src="assets/img/image2.jpg"></li>
-                                <li>
-                                    <h6>exercice2</h6>
-                                </li>
-
-                            </ul>
-                        </a>
-                    </div>
-                </div>
-            </div>
-                <div class="categorie-tb">
-                    <div class="test-tb">
-                        <div class="border">
-                            <a style="text-decoration: none" href="../projet_romain_s3/index.php">
-                                <ul>
-                                    <li><img src="assets/img/image3.jpg"></li>
-                                    <li>
-                                        <h6>exercice3</h6>
-                                    </li>
-
-                                </ul>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-    
+       
+    <?php } ?>
     </div>
 </div>
                 <div class="separator2"></div>
