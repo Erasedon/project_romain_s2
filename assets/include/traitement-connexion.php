@@ -14,7 +14,11 @@
                     if($count > 0){
                  
                         if($mail == $result['email_users'] && password_verify($mdp,$result['mdp_users'])){
-                         
+                            session_start();
+                            $_SESSION['users'] = $result['id_users'];
+                            $_SESSION['nom_users'] = $result['pseudo_users'];
+                            $_SESSION['email'] = $result['email_users'];
+                            
                             header("Location:../../connecter.php");
                             
                         } else {
