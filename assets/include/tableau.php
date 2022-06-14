@@ -2,12 +2,11 @@
 
 include 'assets/db/connexion.php'; 
 
-$sql = "SELECT * FROM project"; 
-		 $prepare = $db->prepare($sql);   
+	$sql = "SELECT * FROM project"; 
+	// $sql = "SELECT id_users FROM project"; 
+	$prepare = $db->prepare($sql);   
 		 $prepare ->execute();
-		 $result = $prepare->fetch();
-		 $count = $prepare->rowCount();
-		 if($count > 0){}
+		 $result = $prepare->fetchall(); 
 
 ?>
 <div class="container">
@@ -48,6 +47,8 @@ $sql = "SELECT * FROM project";
 						</tr>
 					</thead>
 					<tbody>
+						<?php foreach ($result as $row){
+						?>
 						<tr>
 							<td>
 								<span class="custom-checkbox">
@@ -55,21 +56,21 @@ $sql = "SELECT * FROM project";
 									<label for="checkbox1"></label>
 								</span>
 							</td>
-							<td><? echo $result['titre_project'] ?></td>
-							<td><? echo $result['img_project'] ?></td>
-							<td><? echo $result['url_project'] ?></td>
-							<td><? echo $result['date_project'] ?></td>
-							<td><? echo $result['id_users'] ?></td>
+							<td><?php echo $row['titre_project'] ?></td>
+							<td><?php echo $row['img_project'] ?></td>
+							<td><?php echo $row['url_project'] ?></td>
+							<td><?php $now =  new \DateTime($row['date_project']);  echo($now->format('d/m/Y')); ?></td>
+							<td><?php echo $_SESSION['users'] ?></td>
 							<td>
-								<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+								<a href="#editEmployeeModal<?php echo $row['id_project'] ?>" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Modifier">&#xE254;</i></a>
+								<a href="#deleteEmployeeModal<?php echo $row['id_project']; ?>" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Supprimer">&#xE872;</i></a>
 							</td>
 						</tr>
-					
+					<?php   }?>
 					</tbody>
 				</table>
 				<div class="clearfix">
-					<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+					<div class="hint-text">Voir les <b>5</b> out of <b>25</b> entries</div>
 					<ul class="pagination">
 						<li class="page-item disabled"><a href="#">Precedent</a></li>
 						<li class="page-item active"><a href="#" class="page-link">1</a></li>
@@ -87,27 +88,27 @@ $sql = "SELECT * FROM project";
 	<div id="addEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form>
+				<form method="post" action="assets/include/traitementcrud.php?id=<?php echo $_SESSION['users']; ?>">
 					<div class="modal-header">						
 						<h4 class="modal-title">Ajouter project</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">					
 						<div class="form-group">
-							<label>Name</label>
-							<input type="text" class="form-control" required>
+							<label>Titre</label>
+							<input type="text" name="addtitre" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Email</label>
-							<input type="email" class="form-control" required>
+							<label>Url de l'image</label>
+							<input type="text" name="addurl" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Address</label>
-							<textarea class="form-control" required></textarea>
+							<label>chemin du dossier</label>
+							<textarea name="addchemind" class="form-control" required></textarea>
 						</div>
 						<div class="form-group">
-							<label>Phone</label>
-							<input type="text" class="form-control" required>
+							<label>Date</label>
+							<input type="date" name="adddate" class="form-control"  required>
 						</div>					
 					</div>
 					<div class="modal-footer">
@@ -119,32 +120,41 @@ $sql = "SELECT * FROM project";
 		</div>
 	</div>
 	<!-- Edit Modal HTML -->
-	<div id="editEmployeeModal" class="modal fade">
+	<?php 
+	 foreach ($result as $row){
+ 
+?>
+	<div id="editEmployeeModal<?php echo $row['id_project']; ?>" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form>
+				<form method="post" action="assets/include/traitementcrud.php?id=<?php echo $_SESSION['users']; ?>">
 					<div class="modal-header">						
 						<h4 class="modal-title">Edit project</h4>
+						<input type="text" name="upid" style="display:none" value="<?php echo $row['id_project']; ?>" >	
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">					
 						<div class="form-group">
-							<label>Name</label>
-							<input type="text" class="form-control" required>
+							<label>Titre</label>
+							<input type="text"  name="uptitre" value="<?php echo $row['titre_project'] ; ?>" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Email</label>
-							<input type="email" class="form-control" required>
+							<label>Url de l'image</label>
+							<input type="text" name="upurl" value="<?php echo $row['img_project']  ; ?>" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Address</label>
-							<textarea class="form-control" required></textarea>
+							<label>chemin du dossier</label>
+							<textarea name="upchemind"  class="form-control" required><?php echo $row['url_project']  ; ?></textarea>
 						</div>
 						<div class="form-group">
-							<label>Phone</label>
-							<input type="text" class="form-control" required>
-						</div>					
+							<label>Date</label>
+							<input type="date" name="update"  class="form-control" value="<?php 
+							
+							$now =  new \DateTime($row['date_project']);  echo($now->format('d/m/Y'));   ?>" required>
+						</div>
+										
 					</div>
+
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
 						<input type="submit" class="btn btn-info" value="Modifier">
@@ -153,13 +163,19 @@ $sql = "SELECT * FROM project";
 			</div>
 		</div>
 	</div>
+	<?php } ?>
 	<!-- Delete Modal HTML -->
-	<div id="deleteEmployeeModal" class="modal fade">
+	<?php 
+	 foreach ($result as $row){
+ 
+?>
+	<div id="deleteEmployeeModal<?php echo $row['id_project']; ?>" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form>
+			<form method="post" action="assets/include/traitementcrud.php?id=<?php echo $_SESSION['users']; ?>">
 					<div class="modal-header">						
 						<h4 class="modal-title">Supprimer porject</h4>
+						<input type="text" name="delid" style="display:none" value="<?php echo $row['id_project']; ?>" >	
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">					
@@ -168,9 +184,10 @@ $sql = "SELECT * FROM project";
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Anuuler">
-						<input type="submit" class="btn btn-danger" value="Supprimer">
+						<input type="submit" class="btn btn-danger" name="delete" value="Supprimer">
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
+	<?php } ?>
